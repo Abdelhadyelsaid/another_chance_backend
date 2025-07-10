@@ -1,0 +1,364 @@
+{
+	"info": {
+		"_postman_id": "369d89ea-5727-4b30-a797-db9e2d1feeb6",
+		"name": "Ecom",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26662190"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Sign Up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"mahmoudsalah1219@gmail.com\",\n    \"username\": \"DresdRam\",\n    \"password\": \"password\",\n    \"first_name\": \"Mahmoud\",\n    \"last_name\": \"Salah\",\n    \"phone_number\": \"01557510670\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3026/users/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "3026",
+							"path": [
+								"users",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign In",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"mahmoudsalah1219@gmail.com\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3026/users/signin",
+							"host": [
+								"localhost"
+							],
+							"port": "3026",
+							"path": [
+								"users",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 3,\n    \"email\": \"abdelhadyelsaid123@gmail.com\",\n    \"username\": \"Magneto\",\n    \"password\": \"password\",\n    \"first_name\": \"Abdelhady\",\n    \"last_name\": \"Elsaid\",\n    \"phone_number\": \"01206322956\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3026/users/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3026",
+							"path": [
+								"users",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Governorates",
+			"item": [
+				{
+					"name": "Get All Governorates",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3026/governorates/get-all",
+							"host": [
+								"localhost"
+							],
+							"port": "3026",
+							"path": [
+								"governorates",
+								"get-all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Address",
+			"item": [
+				{
+					"name": "Create An Address",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 1,\n    \"governorate_id\": 4,\n    \"address_line1\": \"باكوس\",\n    \"address_line2\": \"شارع السينما\", // Address Line 2 Is Optional You Can Remove It From The Response Body If You Want.\n    \"postal_code\": \"21400\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3026/addresses/create",
+							"host": [
+								"localhost"
+							],
+							"port": "3026",
+							"path": [
+								"addresses",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Addresses For One User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3026/addresses/get-addresses?user_id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "3026",
+							"path": [
+								"addresses",
+								"get-addresses"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Address",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"address_id\": 1,\n    \"governorate_id\": 4,\n    \"address_line1\": \"العجمي\",\n    \"address_line2\": \"شارع البيطاش\", // Address Line 2 Is Optional You Can Remove It From The Response Body If You Want.\n    \"postal_code\": \"21400\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3026/addresses/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3026",
+							"path": [
+								"addresses",
+								"update"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payments",
+			"item": [
+				{
+					"name": "Get All User Payments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3026/payments/get-payments?user_id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "3026",
+							"path": [
+								"payments",
+								"get-payments"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a user payment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 1,\n    \"payment_type_id\": 1,\n    \"provider\": \"Visa\",\n    \"account_number\": 12335566,\n    \"expiry_date\": \"2024-11\",\n    \"is_default\": true // This Value Is Optional And The Default Value Of It Is False\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3026/payments/create",
+							"host": [
+								"localhost"
+							],
+							"port": "3026",
+							"path": [
+								"payments",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove User Payment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3026/payments/remove?payment_id=2",
+							"host": [
+								"localhost"
+							],
+							"port": "3026",
+							"path": [
+								"payments",
+								"remove"
+							],
+							"query": [
+								{
+									"key": "payment_id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Payment",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"payment_id\": 1,\n    \"payment_type_id\": 1,\n    \"provider\": \"Master Card\",\n    \"account_number\": 302560247,\n    \"expiry_date\": \"2026-11\",\n    \"is_default\": true // This Value Is Optional And The Default Value Of It Is False\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3026/payments/update",
+							"host": [
+								"localhost"
+							],
+							"port": "3026",
+							"path": [
+								"payments",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Payment Types",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3026/payment-types/get-all",
+							"host": [
+								"localhost"
+							],
+							"port": "3026",
+							"path": [
+								"payment-types",
+								"get-all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Payment Type",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:3026/payment-types/create?type=Papara",
+							"host": [
+								"localhost"
+							],
+							"port": "3026",
+							"path": [
+								"payment-types",
+								"create"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "Papara"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
