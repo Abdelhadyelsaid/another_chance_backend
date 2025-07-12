@@ -2,7 +2,7 @@ import { OrderLine } from "src/model/order_line/entity/order_line.entity";
 import { ProductInventory } from "src/model/product_inventory/entity/product_category.entity";
 import { Promotion } from "src/model/promotion/entity/promotion.entity";
 import { ShoppingCartItem } from "src/model/shopping_cart_item/entity/shopping_cart_item.entity";
-import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Product {
@@ -16,7 +16,8 @@ export class Product {
     name: string;
 
     @Column({
-        nullable: false
+        nullable: false,
+        type: "longtext"
     })
     description: string;
 
@@ -30,7 +31,7 @@ export class Product {
     })
     secondary_images: string;
 
-    @OneToOne(() => ProductInventory, inventory => inventory.product)
+    @ManyToOne(() => ProductInventory, inventory => inventory.product)
     @JoinColumn({ name: 'inventory_id' })
     inventory: ProductInventory;
 

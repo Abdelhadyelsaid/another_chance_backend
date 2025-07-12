@@ -1,6 +1,9 @@
-import { Controller, Get, HttpException, HttpStatus, Query } from '@nestjs/common';
+import { Controller, Get, HttpException, HttpStatus, Query, Post, Body, UseGuards } from '@nestjs/common';
 import { FilterQueries } from './dto/filter_queries.dto';
 import { ProductService } from './product.service';
+import { CreateProductDto } from './dto/create_product.dto';
+import { RolesGuard } from 'src/common/guards/authorization.guard';
+import { Role } from 'src/common/enum/roles.enum';
 
 @Controller('products')
 export class ProductController {
@@ -60,6 +63,12 @@ export class ProductController {
         }
 
         return this.service.filter(filters);
+    }
+
+    @UseGuards(RolesGuard([Role.ADMIN, Role.CUSTOMER]))
+    @Post('store')
+    storeProduct(@Body() body: CreateProductDto) {
+        return this.service.storeProduct(body);
     }
 
 }

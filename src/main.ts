@@ -2,12 +2,12 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './model/app/app.module';
 
-const developement: number = 0;
+const developement: number = 1;
 let port: number;
 let host: string;
 
 if (developement == 0) {
-  port = parseInt(process.env.PORT) ?? 3026
+  port = 3026
   host = "0.0.0.0"
 } else {
   port = 3026

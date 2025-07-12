@@ -10,12 +10,12 @@ export class ShoppingCartController {
 
     @UseGuards(RolesGuard([Role.ADMIN, Role.CUSTOMER]))
     @Get('get-one')
-    getCartByUserId(@Req() request: any) {
-        if(!request.user_id) {
+   async getCartByUserId(@Req() request: any) {
+        if(!request.user.id) {
             throw new HttpException("There is something wrong with your authorization token!", HttpStatus.FORBIDDEN);
         }
 
-        return this.service.findOne(request.user_id);
+        return await this.service.findOne(request.user.id);
     }
 
 }

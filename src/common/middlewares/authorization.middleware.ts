@@ -22,19 +22,27 @@ export class AuthorizationMiddleware implements NestMiddleware {
                 );
 
                 //@ts-ignore
-                request.user_id = payload.id;
-                //@ts-ignore
-                request.user_type_id = payload.user_type_id;
+                request.user = {
+                  id: payload.id,
+                  user_type_id: payload.user_type_id,
+                  user_type: payload.user_type // include if present in payload
+                };
 
-            } catch (exception: any) { console.error(`Unauthorized Request on ${request.baseUrl}. \nMessage: ${exception.message}`) }
+            } catch (exception: any) {
+                console.error(`Unauthorized Request on ${request.baseUrl}. \nMessage: ${exception.message}`);
+            }
         }
 
-        next()
+        next();
     }
 
     private extractTokenFromHeader(request: Request): string | undefined {
-        const token = request.headers.authorization?.split(', ')[0] ?? ''
-        return token ? token : undefined;
+        const authHeader = request.headers.authorization;
+        if (!authHeader) return undefined;
+        // Standard: "Bearer <token>"
+        const [type, token] = authHeader.split(' ');
+        if (type === 'Bearer' && token) return token;
+        return undefined;
     }
 
 }

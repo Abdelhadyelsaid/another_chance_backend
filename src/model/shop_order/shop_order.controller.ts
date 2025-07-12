@@ -12,43 +12,43 @@ export class ShopOrderController {
     constructor(private readonly service: ShopOrderService) { }
 
     @UseGuards(RolesGuard([Role.ADMIN, Role.CUSTOMER]))
-    // @Post('place-order')
-    // placeOrder(@Body() body: PlaceOrderDto, @Req() request: any){
+    @Post('place-order')
+    placeOrder(@Body() body: PlaceOrderDto, @Req() request: any){
         
-    //     if(!request.user_id) {
-    //         throw new HttpException("There is something wrong with your authorization token!", HttpStatus.FORBIDDEN);
-    //     }
+        if(!request.user || !request.user.id) {
+            throw new HttpException("There is something wrong with your authorization token!", HttpStatus.FORBIDDEN);
+        }
         
-    //     return this.service.placeOrder(body, request.user_id);
-    // }
+        return this.service.placeOrder(request.user.id);
+    }
 
     @UseGuards(RolesGuard([Role.ADMIN, Role.CUSTOMER]))
     @Get('get-orders')
     getOrders(@Req() request: any){
         
-        if(!request.user_id) {
+        if(!request.user || !request.user.id) {
             throw new HttpException("There is something wrong with your authorization token!", HttpStatus.FORBIDDEN);
         }
         
-        return this.service.findUserOrders(request.user_id);
+        return this.service.findUserOrders(request.user.id);
     }
 
     @UseGuards(RolesGuard([Role.ADMIN, Role.CUSTOMER]))
     @Get('my-orders')
     getAllMyOrders(@Req() request: any){
         
-        if(!request.user_id) {
+        if(!request.user || !request.user.id) {
             throw new HttpException("There is something wrong with your authorization token!", HttpStatus.FORBIDDEN);
         }
         
-        return this.service.myOrders(request.user_id);
+        return this.service.myOrders(request.user.id);
     }
 
     @UseGuards(RolesGuard([Role.ADMIN, Role.CUSTOMER]))
     @Get('get-order')
     getOrder(@Query('order_id') order_id: number, @Req() request: any){
         
-        if(!request.user_id) {
+        if(!request.user || !request.user.id) {
             throw new HttpException("There is something wrong with your authorization token!", HttpStatus.FORBIDDEN);
         }
         
@@ -59,11 +59,11 @@ export class ShopOrderController {
     @Get('preplacing-order')
     getPreplacingOrderInfo(@Req() request: any){
         
-        if(!request.user_id) {
+        if(!request.user || !request.user.id) {
             throw new HttpException("There is something wrong with your authorization token!", HttpStatus.FORBIDDEN);
         }
         
-        return this.service.preplacingOrder(request.user_id);
+        return this.service.preplacingOrder(request.user.id);
     }
     
 

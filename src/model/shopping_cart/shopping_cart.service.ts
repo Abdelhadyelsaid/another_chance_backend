@@ -16,8 +16,8 @@ export class ShoppingCartService {
             'item.quantity',
             'product.name',
             'product.main_image',
-            'inventory.price',
-            'inventory.qty_in_stock',
+            // 'inventory.price',
+            // 'inventory.qty_in_stock',
         ])
         .innerJoin('cart.items', 'item', 'cart.id = item.cart_id')
         .innerJoin('item.product', 'product', 'product.id = item.product_id')
@@ -28,7 +28,6 @@ export class ShoppingCartService {
         if(!cart){
             throw new HttpException("This user has no cart.", HttpStatus.NO_CONTENT)
         }
-
         return cart;
     }
 

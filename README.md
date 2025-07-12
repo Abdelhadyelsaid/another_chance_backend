@@ -1,11 +1,9 @@
 
-# Clothey API
+# Another Chance API
 
-Welcome to the Clothey E-Commerce API – your go-to solution for powering the backend of an innovative and seamless online shoe shopping experience. Whether you're building a cutting-edge men's, women's, or children's shoe store, Clothey API is designed to elevate your eCommerce platform to new heights.
+Welcome to the Another Chance E-Commerce API – your go-to solution for powering the backend of an innovative and seamless online shopping experience
 
-## Overview
 
-Clothey is not just about selling shoes; it's about creating a digital marketplace where users can effortlessly explore, discover, and purchase the perfect footwear for every occasion. Our API provides a robust foundation for managing product catalogs, processing orders, and delivering a responsive and secure shopping experience.
 
 ## Features
 
@@ -13,11 +11,11 @@ Clothey is not just about selling shoes; it's about creating a digital marketpla
 - **Seamless Checkout Process:** Streamline the purchasing journey for users with a secure and efficient checkout process, ensuring a hassle-free transaction experience.
 - **User Authentication and Authorization:** Implement secure user authentication and authorization mechanisms to safeguard user accounts and sensitive information.
 - **Order Processing:** Efficiently handle order management, from creation to fulfillment, to keep your customers informed and satisfied.
-- **Scalability:** Built with scalability in mind, Clothey API can grow with your business, ensuring optimal performance even as your online store expands.
+- **Scalability:** Built with scalability in mind, Another Chance API can grow with your business, ensuring optimal performance even as your online store expands.
 
 ## Getting Started
 
-Welcome to the Clothey eCommerce API with Nest.js! Follow these steps to get your development environment up and running quickly.
+Welcome to the Another Chance eCommerce API with Nest.js! Follow these steps to get your development environment up and running quickly.
 
 ### Prerequisites
 
@@ -30,8 +28,8 @@ Before you begin, make sure you have the following installed on your machine:
 Clone the repository and navigate to the project folder:
 
 ```bash
-git clone https://github.com/yourusername/Clothey-api.git
-cd Clothey-api
+git clone https://github.com/yourusername/Another Chance-api.git
+cd Another Chance-api
 ```
 
 ##### Install dependecies:
@@ -68,4 +66,4 @@ npm run start:dev
 yarn start:dev
 ```
 
-Your Clothey eCommerce API should now be running at http://localhost:3026. You can test it by navigating to the provided URL in your web browser or using API testing tools like Postman or Insomnia.
+Your Another Chance eCommerce API should now be running at http://localhost:3026. You can test it by navigating to the provided URL in your web browser or using API testing tools like Postman or Insomnia.

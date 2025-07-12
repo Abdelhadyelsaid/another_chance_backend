@@ -2,6 +2,10 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Product } from './entity/product.entity';
+import { CreateProductDto } from './dto/create_product.dto';
+import { ProductInventory } from '../product_inventory/entity/product_category.entity';
+import { CategoryType } from '../category_type/entity/category_type.entity';
+import { ProductCategory } from '../product_category/entity/product_category.entity';
 
 @Injectable()
 export class ProductService {
@@ -201,6 +205,60 @@ export class ProductService {
         }
 
         return reformed_products;
+    }
+
+    async storeProduct(body: CreateProductDto) {
+        // Create inventory first
+
+        const inventoryRepo = this.repo.manager.getRepository(ProductInventory);
+        const type = new CategoryType();
+        type.id = body.inventory.type_id;
+
+        const category = new ProductCategory();
+        category.id = body.inventory.category_id;
+
+        if (!type.id || !category.id) {
+            throw new HttpException('Type or Category ID is missing!', HttpStatus.BAD_REQUEST);
+        }
+
+        const inventory = inventoryRepo.create({
+            SKU: body.inventory.SKU,
+            qty_in_stock: body.inventory.qty_in_stock,
+            price: body.inventory.price,
+            type,
+            category
+        });
+
+        let savedInventory;
+        try {
+            savedInventory = await inventoryRepo.save(inventory);
+        } catch (error) {
+            console.error('Error saving inventory:', error);
+            throw new HttpException('Could not create product inventory!', HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        if (!savedInventory) {
+            throw new HttpException('Could not create product inventory!', HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        // Create product
+        const product = this.repo.create({
+            name: body.name,
+            description: body.description,
+            main_image: body.main_image,
+            secondary_images: body.secondary_images,
+            inventory: savedInventory
+        });
+        let savedProduct;
+        try {
+            savedProduct = await this.repo.save(product);
+        } catch (error) {
+            console.error('Error saving product:', error);
+            throw new HttpException('Could not create product!', HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        if (!savedProduct) {
+            throw new HttpException('Could not create product!', HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return savedProduct;
     }
 
 }

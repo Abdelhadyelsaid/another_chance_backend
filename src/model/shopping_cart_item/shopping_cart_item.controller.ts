@@ -12,11 +12,11 @@ export class ShoppingCartItemController {
     @UseGuards(RolesGuard([Role.ADMIN, Role.CUSTOMER]))
     @Post('add-to-cart')
     getCartByUserId(@Body() body: AddToCartDto, @Req() request: any) {
-        if(!request.user_id) {
+        if(!request.user.id) {
             throw new HttpException("There is something wrong with your authorization token!", HttpStatus.FORBIDDEN);
         }
 
-        return this.service.create(body, request.user_id);
+        return this.service.create(body, request.user.id);
     }
 
     @UseGuards(RolesGuard([Role.ADMIN, Role.CUSTOMER]))

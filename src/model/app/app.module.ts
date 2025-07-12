@@ -56,7 +56,7 @@ import { PasswordReset } from '../password_reset/entity/password_reset.entity';
           username: config.get<string>('DATABASE_USERNAME'),
           password: config.get<string>('DATABASE_PASSWORD'),
           database: config.get<string>('DATABASE_NAME'),
-          synchronize: false,
+          synchronize: true,
           entities: [
             UserPayment,
             User,
@@ -76,7 +76,9 @@ import { PasswordReset } from '../password_reset/entity/password_reset.entity';
             ShoppingCart,
             ShoppingCartItem,
             PasswordReset
-          ]
+          ],
+          driver: require('mysql2'), 
+          logging: true,
         }
       }
     }),
